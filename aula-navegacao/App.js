@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
-import Routes from './routes/RoutesTab';
+import RoutesDrawer from './routes';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Routes/>
+      <RoutesDrawer/>
     </NavigationContainer>
   );
 }
