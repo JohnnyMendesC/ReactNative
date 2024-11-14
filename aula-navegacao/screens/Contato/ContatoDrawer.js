@@ -1,32 +1,28 @@
-import { StyleSheet, Text, View, Button, StatusBar, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, Button, StatusBar, TouchableOpacity, Modal } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
+import { useState } from 'react';
 
 
 export default function ContatoDrawer() {
 
+  const [exibirModal, setExibirModal] = useState(false);
   return (
     <View style={styles.container}>
       <StatusBar />
       <View style={styles.header}>
-        <TouchableOpacity style={styles.botao} title="Home"        >
-          <Text style={{fontSize:20}}>Home</Text>
+          <Text style={{title}}>Tela de Contato</Text>
+        <TouchableOpacity style={styles.button} onPress={() => setExibirModal(true)}        >
+          <Text style={{fontSize:20}}>Abrir</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.botao} title="Sobre"       >
-          <Text style={{fontSize:20}}>Sobre</Text>
-        </TouchableOpacity>
+        <Modal visible={exibirModal} onRequestClose={()=>setExibirModal(false)} transparent={true}>
+            <Text>Teste Modal</Text>
+          </Modal>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#f7a6b2",
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   header: {
     flex: 1,
     backgroundColor: "#889a68",
@@ -34,11 +30,24 @@ const styles = StyleSheet.create({
     alignItems: 'baseline',
     justifyContent: 'space-around',
   },
-  botao: {
-    borderStyle: "solid",
-    borderWidth: 1,
-    borderColor: "#bfd891",
-    padding: 8,
-    backgroundColor: "#daf7a6",
+  container: {
+    flex: 1,
+    backgroundColor: "#121318",
+    justifyContent: "center",
+    alignItems: "center",
   },
-})
+  title: {
+    color: "#fff",
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  button: {
+    backgroundColor: "#fff",
+    padding: 4,
+    marginVertical: 8,
+    width: "70%",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+  },
+});
