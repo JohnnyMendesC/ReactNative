@@ -1,0 +1,6 @@
+
+
+Instalar os icones no projeto
+npm install --save react-native-vector-icons
+Nomes dos icones
+https://oblador.github.io/react-native-vector-icons/

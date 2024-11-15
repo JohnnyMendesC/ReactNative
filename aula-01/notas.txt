@@ -1,0 +1,20 @@
+<View> é tipo a <div>
+<Text> é tipo o <p>
+
+Estilos inline
+<Text style={{color:'red', fontSize:30}}>Hello World!</Text>
+
+Estilo incorporado
+
+rnf react-native-function
+rnc
+rnfe
+
+o state é pra atualizar parte daquele estado para exibir corretamente na tela sem precisar atualizar tudo
+
+
+export sem default 
+voce pode ter mais functions
+
+export com default
+é quando tem um só
