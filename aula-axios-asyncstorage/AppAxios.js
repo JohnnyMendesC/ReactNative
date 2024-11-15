@@ -1,36 +1,51 @@
 import { Alert, Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import api from './service/api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function AppAxios() {
     const [cep, setCep] = useState("");
 
-    const[cepUser, setCepUser] = useState({});
+    const [cepUser, setCepUser] = useState("");
 
     const inputRef = useRef();
 
     const limparCep = () => {
         setCep("");
+        setCepUser("");
         inputRef.current.focus();
     };
 
     const buscar = async () => {
         if (cep.length !== 8) {
             Alert.alert("O cep deve conter 8 dígitos")
+            inputRef.current.focus();
             return;
         }
         try {
             const response = await api.get(`/${cep}/json`)
-            if (response.data.error){
+            if (response.data.erro) {
                 setCepUser({});
                 Alert.alert("Cep não encontrado");
                 Keyboard.dismiss();
+                inputRef.current.focus();
+                return;
             }
+            await AsyncStorage.setItem("@lastCep", cep)
+            inputRef.current.focus();
             setCepUser(response.data);
         } catch (error) {
-            console.log ("Error" + error);
+            console.log("Error" + error);
         }
     };
+
+    useEffect(() => {
+        async function loadData() {
+            const dadoCep = await AsyncStorage.getItem("@lastCep");
+            setCep(dadoCep);
+        }
+        loadData();
+    }, [])
     return (
         <View style={styles.container}>
             <View style={{ alignItems: "center", marginTop: 50 }}>
@@ -44,8 +59,7 @@ export default function AppAxios() {
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder=""
-                    value={cep}
+                    placeholder="Teste focus voltar ao 1° input ao limpar"
                     onChangeText={(texto) => setCep(texto)}
                     keyboardType='numeric'
                 />
@@ -63,13 +77,15 @@ export default function AppAxios() {
                 </TouchableOpacity>
             </View>
 
-            <View style={styles.resultado}>
-                <Text style={styles.itemText}>Cep:{cepUser.cep}</Text>
-                <Text style={styles.itemText}>UF:{cepUser.uf}</Text>
-                <Text style={styles.itemText}>Cidade:{cepUser.localidade}</Text>
-                <Text style={styles.itemText}>Bairro:{cepUser.bairro}</Text>
-                <Text style={styles.itemText}>Rua:{cepUser.logradouro}</Text>
-            </View>
+            {cepUser ? (
+                <View style={styles.resultado}>
+                    <Text style={styles.itemText}>Cep:{cepUser.cep}</Text>
+                    <Text style={styles.itemText}>UF:{cepUser.uf}</Text>
+                    <Text style={styles.itemText}>Cidade:{cepUser.localidade}</Text>
+                    <Text style={styles.itemText}>Bairro:{cepUser.bairro}</Text>
+                    <Text style={styles.itemText}>Rua:{cepUser.logradouro}</Text>
+                </View>
+            ) : null}
         </View>
     )
 }
@@ -116,6 +132,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
+        alignContent: "space-evenly"
+    },
+    textoResultado: {
+        flexDirection: "row"
     },
     itemText: {
         fontSize: 22,

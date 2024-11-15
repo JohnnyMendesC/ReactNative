@@ -3,3 +3,4 @@ npm install axios
 npm install @react-native-async-storage/async-storage
 ficar de olho no MMKV como substituto do asyncstorage
 Expo SQLite outra opção, parecido com o h2, embarcado
+supabase firebase saas cloud
