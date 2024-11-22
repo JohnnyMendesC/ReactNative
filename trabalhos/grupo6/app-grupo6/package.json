@@ -1,0 +1,30 @@
+{
+  "name": "app-grupo6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "app-grupo6": "file:",
+    "expo": "~52.0.7",
+    "expo-app-loading": "^1.1.2",
+    "expo-av": "~15.0.1",
+    "expo-font": "~13.0.1",
+    "expo-linear-gradient": "~14.0.1",
+    "expo-splash-screen": "~0.29.11",
+    "expo-status-bar": "~2.0.0",
+    "lottie-react-native": "^7.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.2",
+    "react-native-splash-screen": "^3.3.0",
+    "react-native-svg": "15.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}

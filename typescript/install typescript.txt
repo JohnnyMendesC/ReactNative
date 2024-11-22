@@ -1,0 +1,53 @@
+npm install -g typescript
+
+tsc --version
+(Version 5.6.3)
+
+Set-ExecutionPolicy Unrestricted
+(se o powershell não aceitar script)
+
+
+cria um new file exemplo.ts
+
+escreve
+const aula= "Hello";    //tipou
+console.log(aula)       //chamou
+
+salva
+abre o terminal e roda:
+tsc .\exemplo.ts
+
+ele traduz e cria um javascript:
+exemplo.js
+
+pois o navegador não entende ts diretamente
+
+
+tsc .\exemplo.ts --target "ES2015" 
+compila(roda) a versão 2015
+
+tsc .\exemplo.ts --target "ESNEXT"
+roda a ultima versao
+
+versões
+https://www.w3schools.com/js/js_versions.asp
+
+
+para autoconfigurar a compilação
+
+tsc --init
+
+"outDir": "./build", 
+"removeComments": true,
+"rootDir": "./src", 
+
+
+cd src
+tsc
+
+split terminal:
+no que ta no src
+tsc --watch
+
+no que ta no build
+node exemplo.js

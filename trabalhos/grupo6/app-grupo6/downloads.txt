@@ -1,0 +1,22 @@
+Padrão:
+npm install
+
+Axios:
+
+
+Async Storage:
+
+Splash Screen com Video:
+npx expo install expo-splash-screen
+npx expo install expo-av
+
+Icones animados:
+yarn add lottie-react-native
+
+Background Gradiente:
+npx expo install expo-linear-gradient
+
+Fontes diferentes:
+npx expo install expo-font
+Cores de fonte:
+npx expo install react-native-svg
